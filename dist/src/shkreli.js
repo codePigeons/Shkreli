@@ -9,8 +9,9 @@ Shkreli.prototype = {
     constructor: Shkreli,
     elarge:function(){
         if(this.element) {
-            if (this.element.splice(1, '#')){
+            if (this.element.charAt(0) == '#'){
                 // If div ID
+                alert();
                 this.width = document.getElementById(this.element).offsetWidth;
                 this.height = document.getElementById(this.element).offsetHeight;
             } else {
