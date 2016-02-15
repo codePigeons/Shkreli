@@ -7,15 +7,14 @@ function Shkreli() {
 
 Shkreli.prototype = {
     constructor: Shkreli,
-    enlarge:function(){
-        
-        this.width = document.getElementById(this.element).offsetWidth;
-        this.height = document.getElementById(this.element).offsetWidth;
+    elarge:function(){
+        alert(this.element);
     },
     broadcast: function (objects) {
         if (objects) {
             if (objects.hasOwnProperty('element')) {
                 this.element = objects.element;
+                this.elarge();
             } else {
                 return false;
             }
