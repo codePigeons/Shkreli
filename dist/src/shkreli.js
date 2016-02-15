@@ -7,13 +7,27 @@ function Shkreli() {
 
 Shkreli.prototype = {
     constructor: Shkreli,
-    broadcast:function(objects){
-        if(objects){
-            
-        }else{
+    enlarge:function(){
+        
+        this.width = document.getElementById(this.element).offsetWidth;
+        this.height = document.getElementById(this.element).offsetWidth;
+    },
+    broadcast: function (objects) {
+        if (objects) {
+            if (objects.hasOwnProperty('element')) {
+                this.element = objects.element;
+            } else {
+                return false;
+            }
+            if (objects.hasOwnProperty('video')) {
+                this.video = objects.video;
+            } else {
+                return false;
+            }
+        } else {
             // no objects
-            alert('Please send us some object');
+            return false;
         }
     },
-    
+
 }
