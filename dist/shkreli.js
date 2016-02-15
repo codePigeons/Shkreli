@@ -5,7 +5,10 @@ function Shkreli() {
 
 Shkreli.prototype = {
     constructor: Shkreli,
-    main:function(objects){
+    broadcast:function(objects){
         
-    }
+    },
+    checkIfUrl:function(url){
+        
+    },
 }
