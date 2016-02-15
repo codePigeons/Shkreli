@@ -8,13 +8,31 @@ function Shkreli() {
 Shkreli.prototype = {
     constructor: Shkreli,
     elarge:function(){
-        alert(this.element);
+        if(this.element) {
+            if (this.element.splice(1, '#')){
+                // If div ID
+                this.width = document.getElementById(this.element).offsetWidth;
+                this.height = document.getElementById(this.element).offsetHeight;
+            } else {
+                // If class
+                this.width = document.getElementsByClassName(this.element).offsetWidth;
+                this.height = document.getElementsByClassName(this.element).offsetHeight;
+            }
+            return true;
+        } else {
+            return false;
+        }
     },
     broadcast: function (objects) {
         if (objects) {
             if (objects.hasOwnProperty('element')) {
                 this.element = objects.element;
-                this.elarge();
+                var enlargeMe = this.elarge();
+                if(enlargeMe == true){
+                    // Do stuff
+                } else {
+                    // Put Shkreli
+                }
             } else {
                 return false;
             }
