@@ -9,7 +9,7 @@ function Shkreli(objects) {
 
 Shkreli.prototype = {
     constructor: Shkreli,
-    enlarge: function() {
+    enlarge: function () {
         if (this.element) {
             if (this.element.charAt(0) == '#') {
                 // If div ID
@@ -27,7 +27,7 @@ Shkreli.prototype = {
             return false;
         }
     },
-    broadcast: function(objects) {
+    broadcast: function (objects) {
         if (objects) {
             if (objects.hasOwnProperty('video')) {
                 this.video = objects.video;
@@ -38,45 +38,25 @@ Shkreli.prototype = {
                 this.element = objects.element;
                 var enlargeMe = this.enlarge();
                 if (enlargeMe == true) {
-                    if (this.nodeType == 'class') {
-                        var node = document.getElementsByClassName(this.element)[0];
-                        var newNode = document.createElement('VIDEO');
-                        newNode.setAttribute('loop',true);
-                        newNode.setAttribute('muted',true);
-                        newNode.setAttribute('autoplay',true);
-                        newNode.id = 'shkreli';
-                        node.appendChild(newNode);
-                        var shkreli = document.getElementById('shkreli');
-                        shkreli.style.zIndex = '-100';
-                        shkreli.style.position = "absolute";
-                        shkreli.style.top = "0";
-                        shkreli.style.width = "100%";
-                        shkreli.style.height = "100%";
-                        var mp4 = document.createElement('SOURCE');
-                        mp4.src = this.video;
-                        mp4.type = 'video/mp4';
-                        shkreli.appendChild(mp4);
-                    }else{
-                        var node = document.getElementById(this.element.slice(1));
-                        node.style.backgroundColor = 'transparent';
-                        var newNode = document.createElement('VIDEO');
-                        newNode.setAttribute('loop',true);
-                        newNode.setAttribute('muted',true);
-                        newNode.setAttribute('autoplay',true);
-                        newNode.id = 'shkreli';
-                        node.appendChild(newNode);
-                        var shkreli = document.getElementById('shkreli');
-                        shkreli.style.zIndex = '-100';
-                        shkreli.style.position = "absolute";
-                        shkreli.style.top = "0";
-                        shkreli.style.left = "0";
-                        shkreli.style.width = "100%";
-                        shkreli.style.height = "100%";
-                        var mp4 = document.createElement('SOURCE');
-                        mp4.src = this.video;
-                        mp4.type = 'video/mp4';
-                        shkreli.appendChild(mp4);
-                    }
+                    var node = document.getElementById(this.element.slice(1));
+                    node.style.backgroundColor = 'transparent';
+                    var newNode = document.createElement('VIDEO');
+                    newNode.setAttribute('loop', true);
+                    newNode.setAttribute('muted', true);
+                    newNode.setAttribute('autoplay', true);
+                    newNode.id = 'shkreli' + this.element.slice(1);
+                    node.appendChild(newNode);
+                    var shkreli = document.getElementById('shkreli' + this.element.slice(1));
+                    shkreli.style.zIndex = '-100';
+                    shkreli.style.position = "absolute";
+                    shkreli.style.top = "0";
+                    shkreli.style.left = "0";
+                    shkreli.style.width = "100%";
+                    shkreli.style.height = "100%";
+                    var mp4 = document.createElement('SOURCE');
+                    mp4.src = this.video;
+                    mp4.type = 'video/mp4';
+                    shkreli.appendChild(mp4);
                 } else {
                     // Put Shkreli
                 }
