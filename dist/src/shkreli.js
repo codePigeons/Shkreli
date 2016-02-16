@@ -4,6 +4,8 @@ function Shkreli(objects) {
     this.video;
     this.width;
     this.height;
+    this.start;
+    this.end;
     this.broadcast(objects);
 }
 
@@ -16,11 +18,6 @@ Shkreli.prototype = {
                 this.width = document.getElementById(this.element.slice(1)).offsetWidth;
                 this.height = document.getElementById(this.element.slice(1)).offsetHeight;
                 this.nodeType = 'id';
-            } else {
-                // If class
-                this.width = document.getElementsByClassName(this.element)[0].offsetWidth;
-                this.height = document.getElementsByClassName(this.element)[0].offsetHeight;
-                this.nodeType = 'class';
             }
             return true;
         } else {
@@ -33,6 +30,12 @@ Shkreli.prototype = {
                 this.video = objects.video;
             } else {
                 return false;
+            }
+            if (objects.hasOwnProperty('start') && objects.hasOwnProperty('end')) {
+                this.start = objects.start;
+                this.end = objects.end;
+            } else if (objects.hasOwnProperty('start')) {
+                this.start = objects.start;
             }
             if (objects.hasOwnProperty('element')) {
                 this.element = objects.element;
@@ -49,12 +52,21 @@ Shkreli.prototype = {
                     var shkreli = document.getElementById('shkreli' + this.element.slice(1));
                     shkreli.style.zIndex = '-100';
                     shkreli.style.position = "absolute";
-                    shkreli.style.top = "0";
-                    shkreli.style.left = "0";
-                    shkreli.style.width = "100%";
-                    shkreli.style.height = "100%";
+                    shkreli.style.top = "50%";
+                    shkreli.style.left = "50%";
+                    shkreli.style.minWidth = "100%";
+                    shkreli.style.width = this.width;
+                    shkreli.style.minHeight = "100%"
+                    shkreli.style.height = this.height;
+                    shkreli.style.webkitTransform = "translateX(-50%) translateY(-50%)";
                     var mp4 = document.createElement('SOURCE');
-                    mp4.src = this.video;
+                    if (this.start && this.end) {
+                        mp4.src = this.video + '#t=' + this.start + ',' + this.end;
+                    } else if (this.start) {
+                        mp4.src = this.video + '#t=' + this.start;
+                    } else {
+                        mp4.src = this.video;
+                    }
                     mp4.type = 'video/mp4';
                     shkreli.appendChild(mp4);
                 } else {
