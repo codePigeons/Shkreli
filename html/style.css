@@ -17,11 +17,11 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 
 
 a{
-	color:#ffffff!important;
+	color:#47454B!important;
 }
 
  a:hover{
-	color:#cccccc!important;
+	color:#39373c!important;
 	 text-decoration: none;
 	 cursor:pointer;
 }
